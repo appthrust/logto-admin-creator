@@ -1,0 +1,23 @@
+{
+	"name": "logto-create-admin",
+	"module": "index.ts",
+	"type": "module",
+	"devDependencies": {
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"scripts": {
+		"start": "bun run index.ts",
+		"build": "bun run build:all",
+		"build:all": "bun run build:linux && bun run build:windows && bun run build:macos",
+		"build:linux": "bun run build:linux-x64 && bun run build:linux-arm64",
+		"build:linux-x64": "bun build index.ts --compile --minify --sourcemap --target=bun-linux-x64 --outfile bin/logto-create-admin-linux-x64",
+		"build:linux-arm64": "bun build index.ts --compile --minify --sourcemap --target=bun-linux-arm64 --outfile bin/logto-create-admin-linux-arm64",
+		"build:windows": "bun build index.ts --compile --minify --sourcemap --target=bun-windows-x64 --outfile bin/logto-create-admin-windows-x64",
+		"build:macos-arm64": "bun build index.ts --compile --minify --sourcemap --target=bun-darwin-arm64 --outfile bin/logto-create-admin-darwin-arm64",
+		"build:macos-x64": "bun build index.ts --compile --minify --sourcemap --target=bun-darwin-x64 --outfile bin/logto-create-admin-darwin-x64",
+		"build:macos": "bun run build:macos-arm64 && bun run build:macos-x64"
+	}
+}
